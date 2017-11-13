@@ -5,12 +5,37 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import Home from './components/HelloFromVux'
-
+import Main from './components/MainPage'
+import Youxuan from './components/YouXuan'
+import My from './components/My'
+import More from './components/More'
+import vHome from './components/Home'
+import Active from './components/Active'
 Vue.use(VueRouter)
 
 const routes = [{
   path: '/',
-  component: Home
+  // component: Home
+  component: Main,
+  children:[{
+    path:'',
+    redirect:'/home'
+  },{
+    path:'/home',
+    component:vHome
+  },{
+    path:'/more',
+    component:More
+  },{
+    path:'/youxuan',
+    component:Youxuan
+  },{
+    path:'/my',
+    component:My
+  },{
+    path:'/active',
+    component:Active
+  }]
 }]
 
 const router = new VueRouter({
@@ -20,9 +45,9 @@ const router = new VueRouter({
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   router,
   render: h => h(App)
 }).$mount('#app-box')
+
