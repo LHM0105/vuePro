@@ -1,23 +1,5 @@
 <template>
   <div>
-    <!-- <tabbar>
-      <tabbar-item selected link="/home">
-        <img slot="icon" src="../assets/demo/icon_nav_button.png">
-        <span slot="label">首页</span>
-      </tabbar-item>
-      <tabbar-item link="/youxuan">
-        <img slot="icon" src="../assets/demo/icon_nav_msg.png">
-        <span slot="label">优选</span>
-      </tabbar-item>
-      <tabbar-item link="/more">
-        <img slot="icon" src="../assets/demo/icon_nav_article.png">
-        <span slot="label">更多</span>
-      </tabbar-item>
-      <tabbar-item link="/my">
-        <img slot="icon" src="../assets/demo/icon_nav_cell.png">
-        <span slot="label">我的</span>
-      </tabbar-item>
-    </tabbar> -->
     <ul>
         <router-link to="/home" tag="li" class="home">
             <i class="iHome" :class="{active:isActive}"></i>
@@ -49,12 +31,12 @@ export default{
 </script>
 
 <style scoped>
-
 ul{
     width: 100%;
     height: 1.38rem;
     background:url(../../static/tab_background.png) no-repeat center;
     background-size: 100%;
+
     position: fixed;
     font-size: 0.24rem;
     bottom: 0;
@@ -84,7 +66,14 @@ i{
     background:url(../../static/btn_wode.png) no-repeat center;
     background-size: 100%;
 }
-
+.activity i{
+    width: 0.96rem;
+    height: 0.96rem;
+    margin-top: 0.3rem;
+    background:url(../../static/anc_hdozxin_icon.png) no-repeat center;
+    background-size: 100%;
+}
+/* 激活状态 */
 .router-link-active .iHome{
     background:url(../../static/sy_bright.png) no-repeat center;
     background-size: 100%;
@@ -101,13 +90,7 @@ i{
     background:url(../../static/btn_wode_click.png) no-repeat center;
     background-size: 100%;
 }
-.activity i{
-    width: 0.96rem;
-    height: 0.96rem;
-    margin-top: 0.3rem;
-    background:url(../../static/anc_hdozxin_icon.png) no-repeat center;
-    background-size: 100%;
-}
+
 
 /* 路由激活状态 */
 .router-link-active{

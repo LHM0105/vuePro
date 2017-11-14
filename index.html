@@ -17,6 +17,7 @@
    * font-size的大小为： 100 * (当前页面宽度 / 640)
    *字体大小或者其他div宽高度 * html的font=该元素的实际大小px (htmlFont*(fontRem || divRem)=realPx)
    */
+  
     (function(doc,win){
         var docEle=doc.documentElement;
         var resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
