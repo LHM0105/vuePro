@@ -11,7 +11,18 @@ import My from './components/My'
 import More from './components/More'
 import vHome from './components/Home'
 import Active from './components/Active'
+import Kaquan from './components/Kaquan'
 Vue.use(VueRouter)
+// 引入axios以进行数据请求
+// import axios form 'axios'
+// Vue.prototype.$axios = axios
+// vux提供的数据请求的插件
+import { AjaxPlugin } from 'vux'
+Vue.use(AjaxPlugin)
+// import Mock from './mock'
+
+// 引入mockjs进行数据模拟
+require('./mock')
 
 const routes = [{
   path: '/',
@@ -35,6 +46,9 @@ const routes = [{
   },{
     path:'/active',
     component:Active
+  },{
+    path:'/home/try',
+    component:Kaquan
   }]
 }]
 

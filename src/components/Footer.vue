@@ -2,19 +2,19 @@
   <div>
     <ul>
         <router-link to="/home" tag="li" class="home">
-            <i class="iHome" :class="{active:isActive}"></i>
+            <i class="iHome"></i>
         </router-link>
         <router-link to="/youxuan" tag="li" class="yoxuan">
-            <i class="iYoxuan" :class="{active:isActive}"></i>            
+            <i class="iYoxuan"></i>            
         </router-link>
         <router-link to="/active" tag="li" class="activity">
             <i></i> 
         </router-link>
         <router-link to="/more" tag="li" class="more">
-            <i class="iMore" :class="{active:isActive}"></i> 
+            <i class="iMore"></i> 
         </router-link>
         <router-link to="/my" tag="li" class="my">
-            <i class="iMy" :class="{active:isActive}"></i> 
+            <i class="iMy"></i> 
         </router-link>
     </ul>
   </div>
