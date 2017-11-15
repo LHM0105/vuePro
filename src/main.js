@@ -12,6 +12,8 @@ import More from './components/More'
 import vHome from './components/Home'
 import Active from './components/Active'
 import Kaquan from './components/Kaquan'
+import Touzi from './components/Touzi'
+
 Vue.use(VueRouter)
 // 引入axios以进行数据请求
 // import axios form 'axios'
@@ -49,6 +51,9 @@ const routes = [{
   },{
     path:'/home/try',
     component:Kaquan
+  },{
+    path:"/youxuan/tz/:id",
+    component:Touzi
   }]
 }]
 

@@ -27,3 +27,18 @@ Mock.mock('http://home.num.cn',{
         jiaoyi:"12.32"
     }
 })
+// 优选页面的数据
+Mock.mock('http://youxuan.cn',{
+    "arrYx|10": [{
+        "tzID|+1":1,
+        "tzName|+1":[
+            "安心盈NO.396",
+            "向前进NO.205",
+            "集元宝NO.221",
+            "惠盈利NO.356",
+        ],
+        "shouyi|12.2":1,
+        "tzqx|10-60":3,
+        "qt|+1":[300,500,100,200]
+    }]
+})

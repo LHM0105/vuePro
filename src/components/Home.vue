@@ -2,12 +2,12 @@
 <div style="background:#eee;">
   <!-- 轮播图：小按钮样式需要改-->
   <swiper loop auto style="width:100%;margin:0 auto;" height="3.75rem" dots-position="center">
-      <swiper-item class="black"><img src="http://temp.im/640x320/ff00aa/fff"/></swiper-item>
-      <swiper-item class="black"><img src="http://temp.im/640x320/22aa44/fff"/></swiper-item>
-      <swiper-item class="black"><img src="http://temp.im/640x320/aabbaa/fff"/></swiper-item>
-      <swiper-item class="black"><img src="http://temp.im/640x320/33ddaa/fff"/></swiper-item>
-      <swiper-item class="black"><img src="http://temp.im/640x320/ff55aa/fff"/></swiper-item>
-      <swiper-item class="black"><img src="http://temp.im/640x320/3300aa/fff"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/ff00aa/fff" width="100%"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/22aa44/fff" width="100%"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/aabbaa/fff" width="100%"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/33ddaa/fff" width="100%"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/ff55aa/fff" width="100%"/></swiper-item>
+      <swiper-item class="black"><img src="http://temp.im/640x320/3300aa/fff" width="100%"/></swiper-item>
   </swiper>
   <!-- 信息显示 -->
   <div class="touzi">

@@ -31,6 +31,7 @@ let webpackConfig = {
   },
   module: {
     rules: [
+      // 现在代码按照严格模式书写
       // {
       //   test: /\.(js|vue)$/,
       //   loader: 'eslint-loader',
