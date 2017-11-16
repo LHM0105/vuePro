@@ -36,8 +36,8 @@ ul{
     height: 1.38rem;
     background:url(../../static/tab_background.png) no-repeat center;
     background-size: 100%;
-
     position: fixed;
+    z-index: 999;
     font-size: 0.24rem;
     bottom: 0;
     display: flex;

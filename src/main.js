@@ -12,6 +12,8 @@ import vHome from './components/Home'
 import Active from './components/Active'
 import Kaquan from './components/Kaquan'
 import Touzi from './components/Touzi'
+import Login from './components/Login'
+import Register from './components/Register'
 
 Vue.use(VueRouter)
 // 引入axios以进行数据请求
@@ -25,9 +27,11 @@ Vue.use(AjaxPlugin)
 // 引入mockjs进行数据模拟
 require('./mock')
 
+import PageTransition from './components/PageTransition'
 const routes = [{
   path: '/',
   component: Main,
+  // component:PageTransition,
   children:[{
     path:'',
     redirect:'/home'
@@ -55,6 +59,12 @@ const routes = [{
   },{
     path:"/home/activity",
     component:Active
+  },{
+    path:"/my/login",
+    component:Login
+  },{
+    path:"/my/register",
+    component:Register
   }]
 }]
 

@@ -1,7 +1,5 @@
 <template>
 <transition name="slide">
-      
-   
 	<div>
 		<div :class="{A_content:true}">
 			<img src="../../static/dl_icon_del2.png" @click="close" :class="{closeBtn:true}" alt="">

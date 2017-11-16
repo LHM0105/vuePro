@@ -66,7 +66,7 @@
     <p><i></i>银行资金存管系统对接中</p>
   </div>
   <!-- 双十一活动 -->
-  <router-link to="/home/activity" :class="{H_activeity:true}"></router-link>
+  <router-link to="/home/activity" tag="div" :class="{H_activeity:true}"></router-link>
 	<!-- 底部按钮 -->
 	<v-footer></v-footer>
 </div>
