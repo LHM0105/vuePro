@@ -4,7 +4,6 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
-import Home from './components/HelloFromVux'
 import Main from './components/MainPage'
 import Youxuan from './components/YouXuan'
 import My from './components/My'
@@ -28,7 +27,6 @@ require('./mock')
 
 const routes = [{
   path: '/',
-  // component: Home
   component: Main,
   children:[{
     path:'',
@@ -54,6 +52,9 @@ const routes = [{
   },{
     path:"/youxuan/tz/:id",
     component:Touzi
+  },{
+    path:"/home/activity",
+    component:Active
   }]
 }]
 

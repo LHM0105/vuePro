@@ -1,14 +1,32 @@
 <template>
     <!-- <h1>主页面</h1> -->
-    <router-view></router-view>
+    <!-- 添加路由过渡动效 没效果-->
+    <!-- <transition :name="transitionName"> -->
+      <router-view></router-view>
+    <!-- </transition> -->
 </template>
 
 <script>
 import vFooter from '@/components/Footer'
 export default {
   name: 'mainpage',
+  data(){
+    return {
+      transitionName:"slide-left"
+    }
+  },
   components:{
     vFooter
+  },
+  mounted(){
+    console.log(this.transitionName);
+  },
+  watch: {
+    '$route' (to, from) {
+      const toDepth = to.path.split('/').length
+      const fromDepth = from.path.split('/').length
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    }
   }
   // data () {
   //   return {

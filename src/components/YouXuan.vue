@@ -47,20 +47,19 @@ export default {
     
   },
   mounted(){
-    // 获取数据
-    this.$http({
-      url:"http://youxuan.cn",
-      method:"get"
-    }).then((data) => {
-      console.log("初次获取",data)
-      let thisdata = data.data.arrYx;
-      this.datalist = thisdata;
-      // console.log(this.datalist)
-    })
+    // 获取数据,使用下拉刷新infinite方法会在页面第一次出现时执行一次，这里注释掉
+    // this.$http({
+    //   url:"http://youxuan.cn",
+    //   method:"get"
+    // }).then((data) => {
+    //   console.log("初次获取",data)
+    //   let thisdata = data.data.arrYx;
+    //   this.datalist = thisdata;
+    //   // console.log(this.datalist)
+    // })
   },
   methods:{
     infinite() {
-      // 目前只能刷新一次？？？why
       console.log("上拉加载")  ;
       // ？？？？为什么要加setTimeOut
       // setTimeout(() => {
@@ -84,7 +83,7 @@ export default {
           }else{
             this.datalist.push(...thisdata);
             // setTimeout(() => {
-              $scroller.get('myScroller').resize()
+            $scroller.get('myScroller').resize()
               // infinite();
             // })
           }
@@ -92,10 +91,7 @@ export default {
       // })
     },
     
-
-    //done()表示这次异步加载数据完成，加载下一次
-    //因为这个是同步的，加了setTimeout就是异步加载数据；
-    //因为涉及到this指向问题，所以将他放在一个变量里。
+    //因为这个是同步的，加了setTimeout就是异步加载数据；？？
     refresh() {
       console.log('下拉刷新')
       // setTimeout(()=>{

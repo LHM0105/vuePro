@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <!-- <router-view></router-view> -->
-    <Home></Home>
+    <MainPage></MainPage>
   </div>
 </template>
 
 <script>
-import Home from "./components/HelloFromVux"
-
+import MainPage from './components/MainPage'
 export default {
   name: 'app',
   components:{
-    Home
+    MainPage
   }
 }
 </script>

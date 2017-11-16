@@ -1,6 +1,7 @@
 <template>
+<!-- <transition name="slide"> -->
 <div style="background:#eee;">
-  <!-- 轮播图：小按钮样式需要改-->
+  <!-- 轮播图 -->
   <swiper loop auto style="width:100%;margin:0 auto;" height="3.75rem" dots-position="center">
       <swiper-item class="black"><img src="http://temp.im/640x320/ff00aa/fff" width="100%"/></swiper-item>
       <swiper-item class="black"><img src="http://temp.im/640x320/22aa44/fff" width="100%"/></swiper-item>
@@ -64,9 +65,12 @@
   <div class="bottomCon">
     <p><i></i>银行资金存管系统对接中</p>
   </div>
+  <!-- 双十一活动 -->
+  <router-link to="/home/activity" :class="{H_activeity:true}"></router-link>
 	<!-- 底部按钮 -->
 	<v-footer></v-footer>
 </div>
+<!-- </transition> -->
 </template>
 
 <script>
@@ -101,6 +105,15 @@ export default {
 </script>
 
 <style lang="less">
+.H_activeity{
+  position: fixed;
+  right: 0.4rem;
+  bottom: 1.7rem;
+  width: 1.32rem;
+  height: 1.32rem;
+  background:url(../../static/double_11_button.png) no-repeat center;
+  background-size: 100%;
+}
   div{
     font-size: 16px;
   }
