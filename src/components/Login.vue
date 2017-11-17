@@ -1,15 +1,252 @@
 <template>
   <div>
-      <h1>这是登录页</h1>
+      <x-header :left-options="{showBack:false}" class="head">
+        <i slot="overwrite-left" @click="closeBack" class="L_closeBtn"><img src="../../static/clos_icon.png" width="100%" alt="" /></i>
+        登录
+      </x-header>
+      <div :class="{registBox:true}">
+        <form action="post">
+          <label for="userId">
+            <input v-model="userIdIpt" @input="userIdchange" :class="{userId_icon:true}" type="text" name="userId" id="userId" placeholder="手机号/用户名">
+            <i :class="{closeIcon:isClear}" @click="clearId"></i>
+          </label>
+          <label for="psw">
+            <input v-model="userPswIpt" @input="pswchange"  :class="{user_psw:true}" type="password" name="psw" id="psw" placeholder="请输入登录密码">
+            <i :class="{closeIcon:isClear0}" @click="clearPsw"></i>
+          </label>
+          <input type="button" value="确认登录" @click="loginTo" :class="{loginBtn:true,isLogin:isOk}" />
+        </form>
+      </div>
+      <div :class="{botBox:true}">
+        <router-link to="/my/login" :class="{registNew:true}">注册新用户</router-link>
+        <router-link to="/my/forget" :class="{forget:true}">忘记密码</router-link>
+      </div>
   </div>
 </template>
 
 <script>
+import { XHeader } from 'vux'
 export default {
-  name:"Login"
+  name:"Login",
+  components:{
+     XHeader
+  },
+  methods:{
+    // 用户输入密码时
+    pswchange(){
+      console.log(this.userPswIpt)
+      // 根据输入框是否有内容决定清除按钮是否显示
+      if(this.userPswIpt || this.userPswIpt.length>0){
+        this.isClear0 = true;
+      }else{
+        this.isClear0 = false;
+      }
+// 如果用户输入了符合格式的的电话号，而且输入的密码长度>6
+      if(this.userIdTrue && this.userPswIpt.length>6){
+        this.isOk = true;
+      }
+    },
+    // 用户输入用户名时
+    userIdchange(){
+      console.log(this.userIdIpt)
+      // 根据输入框是否有内容决定清除按钮是否显示
+      if(this.userIdIpt || this.userIdIpt.length>0){
+        this.isClear = true;
+      }else{
+        this.isClear = false;
+      }
+      // 正则表达式验证用户输入的是不是手机号码
+      let reg = new RegExp(/^1\d{10}$/);
+      this.userIdTrue = reg.test(this.userIdIpt);
+      // 如果用户输入了符合格式的的电话号，而且输入的密码长度>6
+      if(this.userIdTrue && this.userPswIpt.length>6){
+        this.isOk = true;
+      }
+    },
+    clearId(){
+      this.userIdIpt = ""
+    },
+    clearPsw(){
+      this.userPswIpt = ""
+    },
+    // 登录判断
+    loginTo(){
+    //   console.log("点击登录");
+      // this.$http({
+      //   url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+      //   method:"post",
+      //   emulateJSON:true,
+      //   data:{
+      //     status:"login",
+      //     userID:this.userIdIpt,
+      //     password:this.userPswIpt
+      //   },
+      // }).then((data) => {
+      //     console.log(data)
+      // })
+      // this.$http.get("http://datainfo.duapp.com/shopdata/userinfo.php",
+      //  {
+      //     status:"login",
+      //     userID:this.userIdIpt,
+      //     password:this.userPswIpt
+      //   },
+      //   {emulateJSON:true},
+      // ).then((data) => {
+      //     console.log(data)
+      // },(err)=>{
+      //   console.log(err)
+      // })
+
+// this.$http.post('http://datainfo.duapp.com/shopdata/userinfo.php',{status:'login',userID:this.userIdIpt,password:this.userPswIpt},{emulateJSON:true}).then(res=>{
+//   console.log(res)
+// // 					if(res.body==0){
+// // 						alert('用户名不存在')
+// // 					}else if(res.body==2){
+// // 						alert('密码错误')
+// // 					}else{
+// // 						localStorage.setItem('user',res.body.userID)
+// // 						Toast({
+// // 						  message: '登录成功',
+// // 						  position: 'bottom',
+// // 						  duration: 3000
+// // 						});
+// // //						this.$router.push({
+// // //		            		path:"/info", 
+// // //		            		name:"Info"
+// // //		      	   		 })
+// // 					}
+// 				})
+				// this.$http.jsonp('http://datainfo.duapp.com/shopdata/getuser.php',{params: {userID:this.userIdIpt}}).then(res=>{
+				// 	console.log(res)
+				// })
+
+// 传参
+//       this.$http.post("http://datainfo.duapp.com/shopdata/getuser.php",{userID:this.userIdIpt},{emulateJSON:true}).then(
+//           function (res) {            
+//              // 处理成功的结果
+//              console.log(res)
+//           },function (err) {
+//           // 处理失败的结果
+//           console.log(err)
+//        });
+
+      // 进行账号密码的逻辑判断
+      if(true){
+        console.log("登录成功")
+        // 转到首页
+        this.$router.push("/home")
+      }else{
+        // 登录失败
+        console.log("登录失败")
+      }
+    },
+    closeBack(){
+      console.log("关闭本页面,回到上一个页面")
+			this.$router.back(-1)
+    }
+  },
+  data(){
+    return {
+      // 按钮颜色
+      isOk:false,
+      isClear:false,
+      isClear0:false,
+      userIdIpt:'',
+      userPswIpt:'',
+      isDisable:"",
+      userIdTrue:false
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="less">
+.L_closeBtn{
+  float: left;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.head{
+  background:#fff !important;
+}
+.vux-header .vux-header-left{
+  left: 0 !important;
+  top:50%;
+  margin-top: -0.4rem;
+}
+.registBox{
+  position: absolute;
+  top: 1rem;
+  overflow: hidden;
+  padding: 1rem 0.94rem;
+  background:#fff;
+  label{
+    width: 100%;
+    border-bottom: 0.01rem solid #aaa;
+    height: 0.9rem;
+    float: left;
+    position: relative;
+    input{
+      border: 0;
+      float: left;
+      height: 0.9rem;
+      line-height: 0.9rem;
+      text-indent: 0.7rem;
+      width: 100%;
+      font-size: 0.3rem;
+      outline: none;
+    }
+    .user_psw{
+      background: url(../../static/dlumima_icon.png) no-repeat left;
+      background-size: 0.4rem;
+    }
+    .userId_icon{
+      background: url(../../static/dlzhao_icon.png) no-repeat left;
+      background-size: 0.4rem;
+    }
+    .closeIcon{
+      float: right;
+      position: absolute;
+      right: 0;
+      width: 0.88rem;
+      height: 0.88rem;
+      background: url(../../static/chacha_icon.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+  .loginBtn{
+      margin: 0.8rem auto;
+      width: 100%;
+      height: 1rem;
+      color: #fff;
+      background: #f2f2f2;
+      border-radius: 0.5rem;
+      border: 0;
+      font-size: 0.34rem;
+    }
+  .isLogin{
+     background:#fb6b42;
+  }
+}
+.botBox{
+  padding: 4.6rem 0 1.2rem;
+  width: 1000%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  background: #ffffff;
+  a{
+    float: left;
+    width: 3.73rem;
+    text-align: center;
+    color: #aaaaaa;
+    font-size: 0.28rem;
+  }
+  .registNew{
+    border-right: 0.01rem solid #aaaaaa;
+  }
+}
+
+</style>
 
 </style>

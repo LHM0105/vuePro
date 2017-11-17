@@ -1,9 +1,9 @@
 <template>
     <!-- <h1>主页面</h1> -->
     <!-- 添加路由过渡动效 没效果-->
-    <!-- <transition :name="transitionName"> -->
+    <transition :name="transitionName">
       <router-view></router-view>
-    <!-- </transition> -->
+    </transition>
 </template>
 
 <script>

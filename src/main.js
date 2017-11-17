@@ -31,6 +31,7 @@ import PageTransition from './components/PageTransition'
 const routes = [{
   path: '/',
   component: Main,
+  // 全部页面添加动画影响优选页面数据显示
   // component:PageTransition,
   children:[{
     path:'',
