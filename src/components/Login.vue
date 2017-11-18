@@ -31,6 +31,18 @@ export default {
   components:{
      XHeader
   },
+  // mounted(){
+  //   var dataObjData= this.get('ACLC_userID',1000*60*60*24);//过期时间为1天
+  //   console.log(dataObjData || null);
+  //   if (dataObjData!="" && dataObjData!=null) {
+      
+  //   //         console.log("姓名:"+dataObjData.name);
+  //   //         console.log("年龄:"+dataObjData.Age );
+  //   //         console.log("地址:"+dataObjData.Age );
+  //   }else{
+  //   //     alert("获取的信息已经过期");
+  //   } 
+  // },
   methods:{
     // 用户输入密码时
     pswchange(){
@@ -69,21 +81,38 @@ export default {
     clearPsw(){
       this.userPswIpt = ""
     },
+
+     //封装过期控制代码
+    set(key,value){
+        var curTime = new Date().getTime();
+        localStorage.setItem(key,JSON.stringify({data:value,time:curTime}));
+    },
+    
     // 登录判断
     loginTo(){
     //   console.log("点击登录");
-      // this.$http({
-      //   url:"http://datainfo.duapp.com/shopdata/userinfo.php",
-      //   method:"post",
-      //   emulateJSON:true,
-      //   data:{
-      //     status:"login",
-      //     userID:this.userIdIpt,
-      //     password:this.userPswIpt
-      //   },
-      // }).then((data) => {
-      //     console.log(data)
-      // })
+      this.$http({
+        url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+        method:"get",
+        // emulateJSON:true,
+        params:{
+          status:"login",
+          userID:this.userIdIpt,
+          password:this.userPswIpt
+        },
+      }).then((data) => {
+          // console.log(data.data)
+          let thisdata = data.data;
+          if(thisdata==0 || thisdata==2){
+            alert("请检查用户名或密码是否正确")
+          }else if(thisdata instanceof Object){
+            // 如果返回值是对象，说明登录成功，把用户名存储到本地
+            // 这里用上面封装好的函数
+            this.set("ACLC_userID",this.userIdIpt)
+            //转到上一页
+            this.$router.back(-1)
+          }
+      })
       // this.$http.get("http://datainfo.duapp.com/shopdata/userinfo.php",
       //  {
       //     status:"login",
@@ -130,15 +159,7 @@ export default {
 //           console.log(err)
 //        });
 
-      // 进行账号密码的逻辑判断
-      if(true){
-        console.log("登录成功")
-        // 转到首页
-        this.$router.push("/home")
-      }else{
-        // 登录失败
-        console.log("登录失败")
-      }
+     
     },
     closeBack(){
       console.log("关闭本页面,回到上一个页面")

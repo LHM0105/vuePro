@@ -2,14 +2,14 @@
 <div>
 	<x-header :left-options="{showBack: false}">我的</x-header>
   <div :class="{My_content:true}">
-    <div :class="{userInfo:true}">
+    <router-link to="/my/detail" tag="div" :class="{userInfo:true}">
       <img src="../../static/home_icon_user.png" alt="">
       <div :class="{userInfoTxt:true}">
         <h4>{{usermsg}}</h4>  
         <p>未绑定银行卡</p>
       </div>
       <span :class="{moreIcon:true}"></span>
-    </div> 
+    </router-link> 
     <ul :class="{btnList:true}">
       <router-link tag="li" to="/my/kaquan"><i class="one"></i><span>卡券</span></router-link>
       <router-link tag="li" to="/my/kaquan"><i class="two"></i><span>充值</span></router-link>
@@ -37,7 +37,7 @@
       </cell>
     </group>
 <!-- v-model控制是否显示 -->
-    <popup v-model="show" :hide-on-blur="false" @on-hide="log('hide')" @on-show="log('show')">
+    <popup v-model="show" :hide-on-blur="false" on-show="onShow">
       <div :class="{popup0:true}">
           <router-link :class="{registBtn:true}" tag="div" to="/my/register">注册</router-link>
           <router-link :class="{loginBtn:true}" tag="div" to="/my/login">登录</router-link>
@@ -70,8 +70,21 @@ export default {
     }
   },
   methods:{
-    log(str){
-      console.log(str)
+    onShow(){
+      console.log("显示")
+    },
+    // 获取localStorage信息并判断是否过期，这里设置过期时间
+    get(key,exp){
+        var data = localStorage.getItem(key);
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time > exp) {
+            console.log('信息已过期');
+        }else{
+            var dataObjDatatoJson = JSON.parse(dataObj.data)
+            // 返回存入的值
+            return dataObjDatatoJson;
+            // return dataObj;
+        }
     }
   },
   // 组件渲染后执行的第一个函数
@@ -80,10 +93,19 @@ export default {
     // 未登录的话显示登录注册按钮，this.show = true;显示遮罩
     // 未登录的话this.usermsg = "用户id"
 
-    // 如果登录了设置如下
-    // this.usermsg = "userid"
-    // this.show = false;
-  }
+    // 获取用户登陆信息
+    var localUserID= this.get('ACLC_userID',1000*60*60*24);//过期时间为1天
+    // console.log(localUserID || null);
+    if (localUserID!="" && localUserID!=null) {
+      // 用户登陆未过期，自动从远程获取用户信息并显示
+      this.show = false//隐藏遮罩
+      this.usermsg = localUserID;//显示用户信息
+    }else{
+      // 显示遮罩，让用户去登陆或者注册
+      
+      //     alert("获取的信息已经过期");
+    } 
+  },
 }
 </script>
 

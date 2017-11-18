@@ -1,9 +1,9 @@
 <template>
   <div>
-  <div class="header"></div>
-  <transition :name="transitionName">
-    <router-view class="child-view" @to-parent="getChild"></router-view>
-  </transition>
+    <div class="header"></div>
+    <transition :name="transitionName">
+      <router-view class="child-view" @to-parent="getChild"></router-view>
+    </transition>
   </div>
 </template>
 

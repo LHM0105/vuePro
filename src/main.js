@@ -14,6 +14,9 @@ import Kaquan from './components/Kaquan'
 import Touzi from './components/Touzi'
 import Login from './components/Login'
 import Register from './components/Register'
+import MyDetail from './components/MyDetail'
+// 动画页
+import PageTransition from './components/PageTransition'
 
 Vue.use(VueRouter)
 // 引入axios以进行数据请求
@@ -27,7 +30,7 @@ Vue.use(AjaxPlugin)
 // 引入mockjs进行数据模拟
 require('./mock')
 
-import PageTransition from './components/PageTransition'
+
 const routes = [{
   path: '/',
   component: Main,
@@ -36,9 +39,6 @@ const routes = [{
   children:[{
     path:'',
     redirect:'/home'
-  },{
-    path:'/home',
-    component:vHome
   },{
     path:'/more',
     component:More
@@ -59,13 +59,23 @@ const routes = [{
     component:Touzi
   },{
     path:"/home/activity",
-    component:Active
+    component:PageTransition,
+    children:[{
+      path:'',
+      component:Active
+    },{
+      path:'/home',
+      component:vHome
+    }]
   },{
     path:"/my/login",
     component:Login
   },{
     path:"/my/register",
     component:Register
+  },{
+    path:"/my/detail",
+    component:MyDetail
   }]
 }]
 
