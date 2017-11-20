@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <ul>
         <router-link to="/home" tag="li" class="home">
             <i class="iHome"></i>
@@ -31,6 +31,9 @@ export default{
 </script>
 
 <style scoped>
+.box{
+    float: left;
+}
 ul{
     width: 100%;
     height: 1.38rem;

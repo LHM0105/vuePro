@@ -43,11 +43,16 @@ const routes = [{
     path:'/more',
     component:More
   },{
-    path:'/youxuan',
-    component:Youxuan
-  },{
-    path:'/my',
-    component:My
+    // path:"/youxuan",
+    // component:PageTransition,
+    // children:[
+    //   {
+        path:'/youxuan',
+        component:Youxuan
+      },{
+        path:"/youxuan/tz/:id",
+        component:Touzi
+      // }]
   },{
     path:'/active',
     component:Active
@@ -55,28 +60,32 @@ const routes = [{
     path:'/home/try',
     component:Kaquan
   },{
-    path:"/youxuan/tz/:id",
-    component:Touzi
-  },{
-    path:"/home/activity",
+    path:"/home",
     component:PageTransition,
     children:[{
       path:'',
-      component:Active
-    },{
-      path:'/home',
       component:vHome
+    },{
+      path:'/home/activity',
+      component:Active
     }]
   },{
-    path:"/my/login",
-    component:Login
-  },{
-    path:"/my/register",
-    component:Register
-  },{
-    path:"/my/detail",
-    component:MyDetail
-  }]
+    path:"/my",
+    component:PageTransition,
+    children:[{
+      path:'',
+      component:My
+    },{
+      path:"/my/login",
+      component:Login
+    },{
+      path:"/my/register",
+      component:Register
+    },{
+      path:"/my/detail",
+      component:MyDetail
+    }]
+  },]
 }]
 
 const router = new VueRouter({

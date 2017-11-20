@@ -18,7 +18,7 @@
         </form>
       </div>
       <div :class="{botBox:true}">
-        <router-link to="/my/login" :class="{registNew:true}">注册新用户</router-link>
+        <router-link to="/my/register" :class="{registNew:true}">注册新用户</router-link>
         <router-link to="/my/forget" :class="{forget:true}">忘记密码</router-link>
       </div>
   </div>
@@ -30,19 +30,19 @@ export default {
   name:"Login",
   components:{
      XHeader
-  },
-  // mounted(){
-  //   var dataObjData= this.get('ACLC_userID',1000*60*60*24);//过期时间为1天
-  //   console.log(dataObjData || null);
-  //   if (dataObjData!="" && dataObjData!=null) {
-      
-  //   //         console.log("姓名:"+dataObjData.name);
-  //   //         console.log("年龄:"+dataObjData.Age );
-  //   //         console.log("地址:"+dataObjData.Age );
-  //   }else{
-  //   //     alert("获取的信息已经过期");
-  //   } 
-  // },
+  }, 
+  data(){
+    return {
+      // 按钮颜色
+      isOk:false,
+      isClear:false,
+      isClear0:false,
+      userIdIpt:'',
+      userPswIpt:'',
+      isDisable:"",
+      userIdTrue:false
+    }
+  },                                                               
   methods:{
     // 用户输入密码时
     pswchange(){
@@ -56,6 +56,7 @@ export default {
 // 如果用户输入了符合格式的的电话号，而且输入的密码长度>6
       if(this.userIdTrue && this.userPswIpt.length>6){
         this.isOk = true;
+        console.log(this.isOk)
       }
     },
     // 用户输入用户名时
@@ -73,8 +74,10 @@ export default {
       // 如果用户输入了符合格式的的电话号，而且输入的密码长度>6
       if(this.userIdTrue && this.userPswIpt.length>6){
         this.isOk = true;
+        // console.log(this.isOk)
       }
     },
+    // 点击输入框的清除按钮
     clearId(){
       this.userIdIpt = ""
     },
@@ -113,69 +116,12 @@ export default {
             this.$router.back(-1)
           }
       })
-      // this.$http.get("http://datainfo.duapp.com/shopdata/userinfo.php",
-      //  {
-      //     status:"login",
-      //     userID:this.userIdIpt,
-      //     password:this.userPswIpt
-      //   },
-      //   {emulateJSON:true},
-      // ).then((data) => {
-      //     console.log(data)
-      // },(err)=>{
-      //   console.log(err)
-      // })
-
-// this.$http.post('http://datainfo.duapp.com/shopdata/userinfo.php',{status:'login',userID:this.userIdIpt,password:this.userPswIpt},{emulateJSON:true}).then(res=>{
-//   console.log(res)
-// // 					if(res.body==0){
-// // 						alert('用户名不存在')
-// // 					}else if(res.body==2){
-// // 						alert('密码错误')
-// // 					}else{
-// // 						localStorage.setItem('user',res.body.userID)
-// // 						Toast({
-// // 						  message: '登录成功',
-// // 						  position: 'bottom',
-// // 						  duration: 3000
-// // 						});
-// // //						this.$router.push({
-// // //		            		path:"/info", 
-// // //		            		name:"Info"
-// // //		      	   		 })
-// // 					}
-// 				})
-				// this.$http.jsonp('http://datainfo.duapp.com/shopdata/getuser.php',{params: {userID:this.userIdIpt}}).then(res=>{
-				// 	console.log(res)
-				// })
-
-// 传参
-//       this.$http.post("http://datainfo.duapp.com/shopdata/getuser.php",{userID:this.userIdIpt},{emulateJSON:true}).then(
-//           function (res) {            
-//              // 处理成功的结果
-//              console.log(res)
-//           },function (err) {
-//           // 处理失败的结果
-//           console.log(err)
-//        });
-
      
     },
     closeBack(){
       console.log("关闭本页面,回到上一个页面")
-			this.$router.back(-1)
-    }
-  },
-  data(){
-    return {
-      // 按钮颜色
-      isOk:false,
-      isClear:false,
-      isClear0:false,
-      userIdIpt:'',
-      userPswIpt:'',
-      isDisable:"",
-      userIdTrue:false
+      // this.$router.back(-1)
+      this.$router.push("/my")
     }
   }
 }
@@ -196,8 +142,9 @@ export default {
   margin-top: -0.4rem;
 }
 .registBox{
-  position: absolute;
-  top: 1rem;
+  // position: absolute;
+  // top: 1rem;
+  margin-top: 1rem;
   overflow: hidden;
   padding: 1rem 0.94rem;
   background:#fff;
@@ -251,9 +198,9 @@ export default {
 }
 .botBox{
   padding: 4.6rem 0 1.2rem;
-  width: 1000%;
-  position: absolute;
-  bottom: 0;
+  width: 100%;
+  // position: fixed;
+  // bottom: 0;
   display: flex;
   background: #ffffff;
   a{

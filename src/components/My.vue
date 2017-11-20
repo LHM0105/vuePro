@@ -37,13 +37,21 @@
       </cell>
     </group>
 <!-- v-model控制是否显示 -->
-    <popup v-model="show" :hide-on-blur="false" on-show="onShow">
+    
+    <!-- <popup v-model="show" :hide-on-blur="false">
       <div :class="{popup0:true}">
           <router-link :class="{registBtn:true}" tag="div" to="/my/register">注册</router-link>
           <router-link :class="{loginBtn:true}" tag="div" to="/my/login">登录</router-link>
       </div>
-    </popup>
+    </popup> -->
 
+  </div>
+  <!-- 遮罩 -->
+  <div :class="{mask:true,isShow:noShow}">
+    <div :class="{popup0:true}">
+        <router-link :class="{registBtn:true}" tag="div" to="/my/register">注册</router-link>
+        <router-link :class="{loginBtn:true}" tag="div" to="/my/login">登录</router-link>
+    </div>
   </div>
 	<v-footer></v-footer>
 </div>
@@ -66,7 +74,9 @@ export default {
   data(){
     return {
       show:true,
-      usermsg:'请先登录'
+      usermsg:'请先登录',
+      false:false,
+      noShow:false
     }
   },
   methods:{
@@ -77,13 +87,17 @@ export default {
     get(key,exp){
         var data = localStorage.getItem(key);
         var dataObj = JSON.parse(data);
-        if (new Date().getTime() - dataObj.time > exp) {
-            console.log('信息已过期');
-        }else{
-            var dataObjDatatoJson = JSON.parse(dataObj.data)
-            // 返回存入的值
-            return dataObjDatatoJson;
-            // return dataObj;
+        // 判断本地存储的数据是否存在
+        if(dataObj){
+          if (new Date().getTime() - dataObj.time > exp) {
+              console.log('信息已过期');
+          }else{
+              var dataObjDatatoJson = JSON.parse(dataObj.data)
+              // 返回存入的值
+              return dataObjDatatoJson;
+              // return dataObj;
+          }
+
         }
     }
   },
@@ -98,7 +112,7 @@ export default {
     // console.log(localUserID || null);
     if (localUserID!="" && localUserID!=null) {
       // 用户登陆未过期，自动从远程获取用户信息并显示
-      this.show = false//隐藏遮罩
+      this.noShow = true//隐藏遮罩
       this.usermsg = localUserID;//显示用户信息
     }else{
       // 显示遮罩，让用户去登陆或者注册
@@ -110,11 +124,57 @@ export default {
 </script>
 
 <style lang="less">
+// 遮罩
+  .mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    .popup0{
+      height: 2.4rem;
+      background:#fff;
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      justify-content: space-around;
+      padding-top: 0.5rem;
+      .registBtn{
+        float: left;
+        height: 0.7rem;
+        width: 2.6rem;
+        background: #ffffff;
+        border-radius: 0.35rem;
+        border: 0.01rem solid #fb7650 !important;
+        color: #fb7650;
+        text-align: center;
+        line-height: 0.7rem;
+        // border-radius:0.02rem solid #fb7650;
+      }
+      .loginBtn{
+        float: left;
+        height: 0.7rem;
+        width: 2.6rem;
+        line-height: 0.7rem;
+        background: #fb7650;
+        border-radius: 0.35rem;
+        color: #fff;
+        text-align: center;
+      }
+    }
+  }
+  // 是否显示遮罩
+  .isShow{
+    display: none;
+  }
 .My_content{
+  
   .weui-cell{
     padding: 0.35rem 0.45rem;
   }
-  margin-top: 1rem;
+  margin-top: 0.98rem;
   .userInfo{
     background:#fb7650;
     height: 1.66rem;
@@ -229,35 +289,7 @@ export default {
     }
   }
   // 遮罩层样式
-  .popup0{
-    height: 3rem;
-    background:#fff;
-    display: flex;
-    justify-content: space-around;
-    padding-top: 0.5rem;
-    .registBtn{
-      float: left;
-      height: 0.7rem;
-      width: 2.6rem;
-      background: #ffffff;
-      border-radius: 0.35rem;
-      border: 0.01rem solid #fb7650 !important;
-      color: #fb7650;
-      text-align: center;
-      line-height: 0.7rem;
-      // border-radius:0.02rem solid #fb7650;
-    }
-    .loginBtn{
-      float: left;
-      height: 0.7rem;
-      width: 2.6rem;
-      line-height: 0.7rem;
-      background: #fb7650;
-      border-radius: 0.35rem;
-      color: #fff;
-      text-align: center;
-    }
-  }
+  
   
 }
 </style>

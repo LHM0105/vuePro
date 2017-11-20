@@ -26,19 +26,19 @@
   <!-- 路由选项 -->
   <div class="iconbtn">
     <ul>
-      <router-link tag="li" to="/help">
+      <router-link tag="li" to="/home/help">
         <img src="../../static/yqhy_icon.png" />
         <i>邀请好友</i>  
       </router-link>
-      <router-link tag="li" to="/help">
+      <router-link tag="li" to="/home/help">
         <img src="../../static/xsgl_icon.png" />
         <i>新手攻略</i>  
       </router-link>
-      <router-link tag="li" to="/help">
+      <router-link tag="li" to="/home/help">
         <img src="../../static/safety_icon.png" />
         <i>安全保障</i>  
       </router-link>
-      <router-link tag="li" to="/help">
+      <router-link tag="li" to="/home/help">
         <img src="../../static/bzzxin_icon.png" />
         <i>帮助中心</i>  
       </router-link>
@@ -66,7 +66,9 @@
     <p><i></i>银行资金存管系统对接中</p>
   </div>
   <!-- 双十一活动 -->
-  <router-link to="/home/activity" tag="div" :class="{H_activeity:true}"></router-link>
+  <router-link to="/home/activity" tag="div" :class="{H_activeity:true}">
+    <img src="../../static/double_11_button.png" alt="" width="100%">
+  </router-link>
 	<!-- 底部按钮 -->
 	<v-footer></v-footer>
 </div>
@@ -107,6 +109,7 @@ export default {
 <style lang="less">
 .H_activeity{
   position: fixed;
+  z-index: 999;
   right: 0.4rem;
   bottom: 1.7rem;
   width: 1.32rem;
