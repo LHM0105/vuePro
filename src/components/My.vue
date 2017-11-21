@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="height:100%">
 	<x-header :left-options="{showBack: false}">我的</x-header>
   <div :class="{My_content:true}">
     <router-link to="/my/detail" tag="div" :class="{userInfo:true}">
@@ -129,7 +129,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.5);
     .popup0{

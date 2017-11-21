@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%;background:#fff;">
       <x-header :left-options="{showBack:false}" class="head">
         <i slot="overwrite-left" @click="closeBack" class="L_closeBtn"><img src="../../static/clos_icon.png" width="100%" alt="" /></i>
         登录

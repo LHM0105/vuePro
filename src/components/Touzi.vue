@@ -5,42 +5,9 @@
       <i slot="overwrite-left" class="backIcon" @click="goback"></i>
       向钱进{{tzID}}
     </x-header>
-    <div class="TZ_con">
-        <div class="shy">
-            <p class="p1">11.10%</p>
-            <p class="p2">年化收益率</p>
-        </div>
-        <ul>
-            <li>加入人数（位）<span>28</span> </li>
-            <li>起投金额（元）<span>500</span> </li>
-            <li>投资期限（天）<span>66</span> </li>
-        </ul>
-    </div>
-    <div class="TZ_xmze">
-        <div class="left">
-            <h5>50000</h5>
-            <p>项目总额</p>
-        </div>
-        <div class="right">
-
-        </div>
-    </div>
-    <div class="infoList">
-        <p><span>气息日：</span><i>T(购买日期)+1</i></p>
-        <p><span>到期日期：</span><i>2018年01月25日</i></p>
-        <p><span>还款方式：</span><i>到期还本付息</i></p>
-    </div>
-    <div class="aqbz">
-        <h4>安全保障<span>查看更多安全保障<i></i></span></h4>
-        <ul>
-            <li><img src="../../static/gs_xq_1zhaq.png" width="100%" height="100%" alt=""></li>
-            <li><img src="../../static/gs_xq_2flbz.png" width="100%" height="100%" alt=""></li>
-            <li><img src="../../static/gs_xq_3ykfx.png" width="100%" height="100%" alt=""></li>
-        </ul>
-    </div>
-    <div class="footDiv">
-        <p>继续拖动，查看图文详情</p>
-    </div>
+     <!-- <scroller style="top:1rem" :on-infinite="infinite" :on-refresh="refresh" ref="myscroller"> -->
+    
+    <router-view></router-view>
     <div class="footP">
         <i></i>
         <p>立即抢购</p>
@@ -183,6 +150,10 @@
 </style>
 <script>
 import { XHeader } from 'vux'
+
+import Vue from 'vue'
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
 export default {
     name:"Touzi",
     components:{
@@ -197,6 +168,7 @@ export default {
         goback(){
             this.$router.go(-1);
         },
+
     },
     mounted(){
         // 从列表页获取到了id，应该在此处通过id查询具体信息，然后显示到页面上

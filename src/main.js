@@ -15,6 +15,7 @@ import Touzi from './components/Touzi'
 import Login from './components/Login'
 import Register from './components/Register'
 import MyDetail from './components/MyDetail'
+import Touzi1 from './components/Touzi1'
 // 动画页
 import PageTransition from './components/PageTransition'
 
@@ -51,7 +52,12 @@ const routes = [{
         component:Youxuan
       },{
         path:"/youxuan/tz/:id",
-        component:Touzi
+        component:Touzi,
+        children:[{
+          path:"",
+          component:Touzi1
+
+        }]
       // }]
   },{
     path:'/active',
