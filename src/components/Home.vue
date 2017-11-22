@@ -70,7 +70,7 @@
     <img src="../../static/double_11_button.png" alt="" width="100%">
   </router-link>
 	<!-- 底部按钮 -->
-	<v-footer></v-footer>
+	<!-- <v-footer></v-footer> -->
 </div>
 <!-- </transition> -->
 </template>

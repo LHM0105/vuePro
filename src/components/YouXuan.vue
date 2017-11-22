@@ -21,7 +21,7 @@
     </div>
 
   </scroller>
-	<v-footer></v-footer>
+	<!-- <v-footer></v-footer> -->
 </div>
 </template>
 <script>

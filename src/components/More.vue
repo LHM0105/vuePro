@@ -39,7 +39,7 @@
     <div :class="{footBack:true}"></div>
    </div>
    
-	<v-footer></v-footer>
+	<!-- <v-footer></v-footer> -->
 </div>
 </template>
 

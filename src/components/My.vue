@@ -53,7 +53,7 @@
         <router-link :class="{loginBtn:true}" tag="div" to="/my/login">登录</router-link>
     </div>
   </div>
-	<v-footer></v-footer>
+	<!-- <v-footer></v-footer> -->
 </div>
 </template>
 

@@ -34,21 +34,19 @@ require('./mock')
 
 const routes = [{
   path: '/',
-  component: Main,
+  // component: vHome,
+  redirect:'/home'
   // 全部页面添加动画影响优选页面数据显示
   // component:PageTransition,
-  children:[{
-    path:'',
-    redirect:'/home'
   },{
     path:'/more',
     component:More
   },{
-    // path:"/youxuan",
-    // component:PageTransition,
-    // children:[
-    //   {
-        path:'/youxuan',
+    path:"/youxuan",
+    component:PageTransition,
+    children:[
+      {
+        path:'',
         component:Youxuan
       },{
         path:"/youxuan/tz/:id",
@@ -58,7 +56,7 @@ const routes = [{
           component:Touzi1
 
         }]
-      // }]
+      }]
   },{
     path:'/active',
     component:Active
@@ -69,7 +67,7 @@ const routes = [{
     path:"/home",
     component:PageTransition,
     children:[{
-      path:'',
+    path:'',
       component:vHome
     },{
       path:'/home/activity',
@@ -92,7 +90,7 @@ const routes = [{
       component:MyDetail
     }]
   },]
-}]
+
 
 const router = new VueRouter({
   routes

@@ -1,9 +1,11 @@
 <template>
+<div>
     <!-- <h1>主页面</h1> -->
-    <!-- 添加路由过渡动效 没效果-->
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
+    <v-footer v-if="isFooter"></v-footer>
+</div>
 </template>
 
 <script>
@@ -12,7 +14,8 @@ export default {
   name: 'mainpage',
   data(){
     return {
-      transitionName:"slide-left"
+      transitionName:"slide-left",
+       isFooter:false
     }
   },
   components:{
@@ -20,6 +23,7 @@ export default {
   },
   mounted(){
     console.log(this.transitionName);
+    this.isFooter = true;
   },
   watch: {
     '$route' (to, from) {
@@ -27,12 +31,16 @@ export default {
       const fromDepth = from.path.split('/').length
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
     }
+  },
+  updated(){
+    console.log(this.$route.path);
+    if(this.$route.path == "/home" || this.$route.path == "/youxuan" || this.$route.path == "/my" || this.$route.path =="/more" || this.$route.path == "/"){
+      this.isFooter = true;
+    }else{
+      this.isFooter = false;
+    }
+    console.log(this.isFooter)
   }
-  // data () {
-  //   return {
-  //     msg: 'Welcome to Your Vue.js App'
-  //   }
-  // }
 }
 </script>
 
