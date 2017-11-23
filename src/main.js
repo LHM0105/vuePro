@@ -21,7 +21,7 @@ import PageTransition from './components/PageTransition'
 
 Vue.use(VueRouter)
 // 引入axios以进行数据请求
-// import axios form 'axios'
+// import axios from 'axios'
 // Vue.prototype.$axios = axios
 // vux提供的数据请求的插件
 import { AjaxPlugin } from 'vux'
@@ -58,9 +58,6 @@ const routes = [{
         }]
       }]
   },{
-    path:'/active',
-    component:Active
-  },{
     path:'/home/try',
     component:Kaquan
   },{
@@ -71,6 +68,9 @@ const routes = [{
       component:vHome
     },{
       path:'/home/activity',
+      component:Active
+    },{
+      path:'/act/active',
       component:Active
     }]
   },{

@@ -7,7 +7,7 @@
         <router-link to="/youxuan" tag="li" class="yoxuan">
             <i class="iYoxuan"></i>            
         </router-link>
-        <router-link to="/active" tag="li" class="activity">
+        <router-link to="/act/active" tag="li" class="activity">
             <i></i> 
         </router-link>
         <router-link to="/more" tag="li" class="more">

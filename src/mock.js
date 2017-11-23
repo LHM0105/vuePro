@@ -21,6 +21,29 @@ const Mock = require('mockjs')
 //             }
 //         ]
 //   })
+
+// tzjl页面的数据
+Mock.mock('http://Tzjl.cn',{
+    "num|20": [{
+        "userPhoto|+1":[
+            "http://temp.im/100x100/ff00ff/fff",
+            "http://temp.im/100x100/aaffff/fff",
+            "http://temp.im/100x100/ff99ff/fff",
+            "http://temp.im/100x100/1100ff/fff",
+            "http://temp.im/100x100/ff0011/fff",
+            "http://temp.im/100x100/ff1100/fff",
+        ],
+        "userName|+1":[
+            "啦啦啦",
+            "haha",
+            "shiwoa",
+            "who"
+        ],
+        "time": "@datetime('yyyy.MM.dd')",
+        "money|1-10000":1000
+    }]
+})
+
 Mock.mock('http://home.num.cn',{
     "num": {
         userNum:'86',

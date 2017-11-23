@@ -16,6 +16,9 @@
 </template>
 
 <style lang="less">
+.vux-header{
+    z-index: 1;
+}
 .TZ_con{
     margin-top: 0.98rem;
     background: #fb7650;
@@ -131,6 +134,7 @@
     height: 1rem;
     background: #fb7650;
     position: fixed;
+    z-index: 4;
     bottom: 0;
     width: 100%;
     i{

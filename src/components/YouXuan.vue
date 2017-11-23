@@ -1,7 +1,8 @@
 <template>
 <div>
   <x-header :left-options="{showBack: false}">优选</x-header>
-  <scroller style="top:1rem" :on-infinite="infinite" :on-refresh="refresh" ref="myscroller">
+  
+  <scroller style="margin-top:1rem;" :on-infinite="infinite" :on-refresh="refresh" ref="myscroller">
     <div :class="{YX_content:true}" v-for="data in datalist">
       <h4>{{data.tzName}}</h4>
       <div :class="{content:true}">
@@ -21,7 +22,7 @@
     </div>
 
   </scroller>
-	<!-- <v-footer></v-footer> -->
+	<!-- <v-footer></v-footer>-->
 </div>
 </template>
 <script>
@@ -62,7 +63,7 @@ export default {
     infinite() {
       console.log("上拉加载")  ;
       // ？？？？为什么要加setTimeOut
-      // setTimeout(() => {
+      setTimeout(() => {
         //请求数据
         this.$http({
           url:"http://youxuan.cn",
@@ -82,19 +83,19 @@ export default {
             
           }else{
             this.datalist.push(...thisdata);
-            // setTimeout(() => {
+            setTimeout(() => {
             $scroller.get('myScroller').resize()
-              // infinite();
-            // })
+              infinite();
+            })
           }
         })
-      // })
+      })
     },
     
     //因为这个是同步的，加了setTimeout就是异步加载数据；？？
     refresh() {
       console.log('下拉刷新')
-      // setTimeout(()=>{
+      setTimeout(()=>{
       this.$http({
         url:"http://youxuan.cn",
         method:"get"
@@ -104,7 +105,7 @@ export default {
         this.datalist = thisdata;
         // console.log(this.datalist)
       })
-      // },1000)
+      })
       // 停止刷新
       this.$refs.myscroller.finishPullToRefresh()
     }
@@ -114,6 +115,10 @@ export default {
 </script>
 
 <style lang="less">
+// 解决添加页面过渡动画之后，数据渲染页面不显示问题。
+.child-view{
+  position: static;
+}
 .vux-header{
   position:fixed !important;
   top: 0;

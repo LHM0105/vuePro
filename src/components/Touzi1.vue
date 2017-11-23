@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div :class="{con1:true}" @touchstart="touchstart()" @touchend="touchend()">
+  <div @touchstart="touchstart()" @touchend="touchend()" :class="{con:true,up:isUp,down:isDown}">
+    <div :class="{con1:true}">
         <div class="TZ_con">
             <div class="shy">
                 <p class="p1">11.10%</p>
@@ -38,8 +38,9 @@
             <p>继续拖动，查看图文详情</p>
         </div>
     </div>
+
     <div :class="{con2:true}">
-        <ul>
+        <ul style="" :class="{fix:isFixed}">
             <li @click="chpActive()" :class="{active:chpIsActive}">产品详情</li>
             <li @click="tzActive()" :class="{active:tzIsActive}">投资记录</li>
         </ul>
@@ -60,7 +61,10 @@ export default {
         tzId:"",
         comView:'ChpDetail',
         chpIsActive:true,
-        tzIsActive:false
+        tzIsActive:false,
+        isUp:false,
+        isDown:false,
+        isFixed:false
       }
   },
   components:{
@@ -91,21 +95,49 @@ export default {
             this.touchEndY = event.changedTouches["0"].clientY;
             this.touchDis = this.touchEndY - this.touchStartY;
             console.log(this.touchDis)
-            if(this.touchDis<-100){
+            if(this.touchDis<-50){
                 console.log("加载下一页") 
+                setTimeout(() => {
+                    this.isUp = true
+                    this.isDown = false;
+                    this.isFixed = true;
+                }, 500);
                 // router.replace({component:})
+            }else if(this.touchDis>50){
+                console.log("加载上一页")
+                setTimeout(() => {
+                    this.isDown = true;
+                    this.isUp = false;
+                    this.isFixed =false;
+                }, 500);
             }
         }
     }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
+.con{
+    position: relative;
+    transition: all 1s linear;
+    // overflow: hidden;
+}
+.up{
+    margin-top: -11.1rem;
+}
+.down{
+    margin-top: 0;
+}
+
 .con2{
     height: 5rem;
+    padding-top: 1rem;
     ul{
         width: 100%;
         overflow: hidden;
         background: #ffffff;
+        position:absolute;
+        top:11.2rem;
+        z-index: 3;
         li{
             width: 50%;
             height: 0.9rem;
@@ -116,6 +148,10 @@ export default {
         .active{
             border-bottom: 0.04rem solid #fb7650;
         }
+    }
+    .fix{
+        position: fixed;
+        top: 1rem;
     }
 }
 .con1{
