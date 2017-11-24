@@ -124,6 +124,7 @@ export default {
   top: 0;
   width: 100%;
   height: 1rem;
+  z-index: 5 !important;
   background-color: #fb7650 !important;
 }
 .vux-header-title-area, .vux-header .vux-header-title{

@@ -17,7 +17,7 @@ export default {
   name:"Tzjl",
   data(){
     return {
-      datalist:[]
+      datalist:[],
     }
   },
   mounted(){

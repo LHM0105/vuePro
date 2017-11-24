@@ -1,75 +1,94 @@
 <template>
-  <div @touchstart="touchstart()" @touchend="touchend()" :class="{con:true,up:isUp,down:isDown}">
-    <div :class="{con1:true}">
-        <div class="TZ_con">
-            <div class="shy">
-                <p class="p1">11.10%</p>
-                <p class="p2">年化收益率</p>
-            </div>
-            <ul>
-                <li>加入人数（位）<span>28</span> </li>
-                <li>起投金额（元）<span>500</span> </li>
-                <li>投资期限（天）<span>66</span> </li>
-            </ul>
-        </div>
-        <div class="TZ_xmze">
-            <div class="left">
-                <h5>50000</h5>
-                <p>项目总额</p>
-            </div>
-            <div class="right">
+  <div>
+  <!-- <div @touchstart="touchstart()" @touchend="touchend()" :class="{con:true,up:isUp,down:isDown}"> -->
+    <swiper  ref="mySwiper" style="margin-bottom:0.9rem;" :options="swiperOption">
+          <!-- slides -->
+        <swiper-slide>
+             <div :class="{con1:true}">
+                <div class="TZ_con">
+                    <div class="shy">
+                        <p class="p1">11.10%</p>
+                        <p class="p2">年化收益率</p>
+                    </div>
+                    <ul>
+                        <li>加入人数（位）<span>28</span> </li>
+                        <li>起投金额（元）<span>500</span> </li>
+                        <li>投资期限（天）<span>66</span> </li>
+                    </ul>
+                </div>
+                <div class="TZ_xmze">
+                    <div class="left">
+                        <h5>50000</h5>
+                        <p>项目总额</p>
+                    </div>
+                    <div class="right">
 
+                    </div>
+                </div>
+                <div class="infoList">
+                    <p><span>气息日：</span><i>T(购买日期)+1</i></p>
+                    <p><span>到期日期：</span><i>2018年01月25日</i></p>
+                    <p><span>还款方式：</span><i>到期还本付息</i></p>
+                </div>
+                <div class="aqbz">
+                    <h4>安全保障<span>查看更多安全保障<i></i></span></h4>
+                    <ul>
+                        <li><img src="../../static/gs_xq_1zhaq.png" width="100%" height="100%" alt=""></li>
+                        <li><img src="../../static/gs_xq_2flbz.png" width="100%" height="100%" alt=""></li>
+                        <li><img src="../../static/gs_xq_3ykfx.png" width="100%" height="100%" alt=""></li>
+                    </ul>
+                </div>
+                <div class="footDiv">
+                    <p>继续拖动，查看图文详情</p>
+                </div>
             </div>
-        </div>
-        <div class="infoList">
-            <p><span>气息日：</span><i>T(购买日期)+1</i></p>
-            <p><span>到期日期：</span><i>2018年01月25日</i></p>
-            <p><span>还款方式：</span><i>到期还本付息</i></p>
-        </div>
-        <div class="aqbz">
-            <h4>安全保障<span>查看更多安全保障<i></i></span></h4>
-            <ul>
-                <li><img src="../../static/gs_xq_1zhaq.png" width="100%" height="100%" alt=""></li>
-                <li><img src="../../static/gs_xq_2flbz.png" width="100%" height="100%" alt=""></li>
-                <li><img src="../../static/gs_xq_3ykfx.png" width="100%" height="100%" alt=""></li>
-            </ul>
-        </div>
-        <div class="footDiv">
-            <p>继续拖动，查看图文详情</p>
-        </div>
-    </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div :class="{con2:true}">
+                <ul>
+                    <li @click="chpActive()" :class="{active:chpIsActive}">产品详情</li>
+                    <li @click="tzActive()" :class="{active:tzIsActive}">投资记录</li>
+                </ul>
+                <component :is="comView" style="margin-top:0.9rem;height:10.4rem;overflow-y:scroll;"></component>
+            </div>
+        </swiper-slide>
+    </swiper>
+   
 
-    <div :class="{con2:true}">
-        <ul style="" :class="{fix:isFixed}">
-            <li @click="chpActive()" :class="{active:chpIsActive}">产品详情</li>
-            <li @click="tzActive()" :class="{active:tzIsActive}">投资记录</li>
-        </ul>
-        <component :is="comView"></component>
-    </div>
+    
   </div>
 </template>
 <script>
+import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 import ChpDetail from '@/components/ChpDetail'
 import Tzjl from '@/components/Tzjl'
 export default {
-  name:"Touzi1",
-  data(){
-      return {
-        touchStartY:0,
-        touchEndY:0,
-        touchDis:0,
-        tzId:"",
-        comView:'ChpDetail',
-        chpIsActive:true,
-        tzIsActive:false,
-        isUp:false,
-        isDown:false,
-        isFixed:false
-      }
-  },
-  components:{
-      ChpDetail,Tzjl
-  },
+    name:"Touzi1",
+    data(){
+        return {
+            touchStartY:0,
+            touchEndY:0,
+            touchDis:0,
+            tzId:"",
+            comView:'ChpDetail',
+            chpIsActive:true,
+            tzIsActive:false,
+            isUp:false,
+            isDown:false,
+            isFixed:false,
+            swiperOption: {
+                // swiper options 所有的配置同swiper官方api配置
+                direction: 'vertical'
+            }
+        }
+    },
+    components:{
+        ChpDetail,Tzjl,
+        swiper, swiperSlide
+    },
     methods:{
         chpActive(){
             this.comView = "ChpDetail";
@@ -81,41 +100,14 @@ export default {
             this.tzIsActive = true;
             this.chpIsActive = false;
         },
-        touchstart(){
-            // 阻止事件冒泡
-            event.cancelBubble = true;
-            console.log(event.changedTouches["0"].clientY)
-            console.log("touchstart事件")
-            this.touchStartY = event.changedTouches["0"].clientY;
-        },
-        touchend(){
-            // 阻止事件冒泡
-            event.cancelBubble = true;
-            console.log(event.changedTouches["0"].clientY)
-            this.touchEndY = event.changedTouches["0"].clientY;
-            this.touchDis = this.touchEndY - this.touchStartY;
-            console.log(this.touchDis)
-            if(this.touchDis<-50){
-                console.log("加载下一页") 
-                setTimeout(() => {
-                    this.isUp = true
-                    this.isDown = false;
-                    this.isFixed = true;
-                }, 500);
-                // router.replace({component:})
-            }else if(this.touchDis>50){
-                console.log("加载上一页")
-                setTimeout(() => {
-                    this.isDown = true;
-                    this.isUp = false;
-                    this.isFixed =false;
-                }, 500);
-            }
-        }
+
     }
 }
 </script>
 <style lang="less" scoped>
+.swiper-container{
+    height: 12.5rem;
+}
 .con{
     position: relative;
     transition: all 1s linear;
@@ -129,14 +121,13 @@ export default {
 }
 
 .con2{
-    height: 5rem;
+    height: 10rem;
     padding-top: 1rem;
     ul{
         width: 100%;
         overflow: hidden;
         background: #ffffff;
         position:absolute;
-        top:11.2rem;
         z-index: 3;
         li{
             width: 50%;

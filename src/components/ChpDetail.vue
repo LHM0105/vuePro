@@ -1,16 +1,17 @@
 <template>
   <div>
+    <!-- <div style="overflow-y:scroll"> -->
       <h4><i></i>承兑银行</h4>
       <p>从后台获取数据</p>
       <h4><i></i>项目信息</h4>
-      <p>后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据</p>
+      <p>后台获取数据后台获取数据</p>
       <h4><i></i>还款保障</h4>
-      <p>后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据</p>
+      <p>后台数据后台获取数据后台获取数据</p>
       <h4><i></i>风控措施</h4>
-       <p>后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获取数据后台获台获取数据后台获取数台获取数据后台获取数台获取数据后台获取数台获取数据后台获取数取数据</p>
+       <p>后获取台获取数取数据</p>
       <h4><i></i>相关图片展示</h4>
-      <!-- <div style="width:7.5rem;overflow-x:hidden"> -->
-        <swiper :options="swiperOption" :not-next-tick="notNextTick" ref="mySwiper" style="height:6rem;margin-bottom:1rem;">
+  
+        <swiper :options="swiperOption" :not-next-tick="notNextTick" ref="mySwiper" style="height:4rem;margin-bottom:1rem;">
           <!-- slides -->
           <swiper-slide><img src="http://temp.im/640x320/ff00ff/fff" alt="" width="100%" height="100%"></swiper-slide>
           <swiper-slide><img src="http://temp.im/640x320/0000ff/fff" alt="" width="100%" height="100%"></swiper-slide>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+
 // starting with version 2.6.0, you need to manually introduce swiper's css
 require('swiper/dist/css/swiper.css')
  
@@ -32,10 +34,11 @@ require('swiper/dist/css/swiper.css')
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {Scroller} from 'vux'
 export default {
   name:"ChpDetail",
   components:{
-    swiper, swiperSlide
+    swiper, swiperSlide,Scroller,
   },
   data() {
       return {
